@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
-import { absoluteUrl, siteDescription, siteName, siteUrl } from "@/lib/seo";
+import { absoluteUrl, geo, location, mapsUrl, postalAddress, siteDescription, siteName, siteUrl } from "@/lib/seo";
 
 const display = Cormorant_Garamond({
   variable: "--font-display",
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     "Zimbabwean artists",
     "Harare craft",
     "Borrowdale Race Course",
+    "Mashonaland Turf Club",
     "Zimbabwean design",
     "Ipi Tombe Circle",
   ],
@@ -91,13 +92,21 @@ export default function RootLayout({
                   url: siteUrl,
                   image: absoluteUrl("/opengraph-image"),
                   description: siteDescription,
-                  address: {
-                    "@type": "PostalAddress",
-                    streetAddress: "Borrowdale Race Course",
-                    addressLocality: "Harare",
-                    addressCountry: "ZW",
+                  address: postalAddress,
+                  geo,
+                  containedInPlace: {
+                    "@type": "Place",
+                    name: location.parentName,
+                    alternateName: location.venue,
+                    address: {
+                      "@type": "PostalAddress",
+                      streetAddress: `${location.venue}, ${location.street}`,
+                      addressLocality: location.suburb,
+                      addressRegion: location.city,
+                      addressCountry: location.countryCode,
+                    },
                   },
-                  hasMap: "https://www.google.com/maps/search/?api=1&query=Borrowdale+Race+Course+Harare",
+                  hasMap: mapsUrl,
                   areaServed: { "@type": "City", name: "Harare" },
                   currenciesAccepted: "USD, ZWG",
                 },

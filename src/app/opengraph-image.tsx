@@ -20,7 +20,7 @@ export default function Image() {
           <div style={{ width: 120, borderTop: "5px solid #c68b3c", margin: "30px 0" }} />
           <div style={{ fontSize: 28 }}>18 Zimbabwean makers. One remarkable circle.</div>
         </div>
-        <div style={{ fontSize: 22 }}>Borrowdale Race Course, Harare</div>
+        <div style={{ fontSize: 22 }}>Mashonaland Turf Club · Borrowdale Race Course, Harare</div>
       </div>
       <div style={{ width: "48%", display: "flex" }}>
         {photos.map((photo) => <img key={photo} src={absoluteUrl(photo)} alt="" width={192} height={630} style={{ objectFit: "cover" }} />)}

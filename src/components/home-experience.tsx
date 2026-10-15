@@ -26,6 +26,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { makerCategories, makers, type Maker } from "@/data/makers";
 import { db, firebaseReady } from "@/lib/firebase";
 import { CircleMark, Wordmark } from "@/components/brand";
+import { mapsUrl } from "@/lib/seo";
 
 const heroImages = [
   ["/media/makers/kd-poratoe/kd-poratoe-3026.jpg", "Zimbabwean patterned textile bags by KD Poratoe"],
@@ -214,7 +215,7 @@ export default function HomeExperience() {
             </h1>
             <p>A living circle of Zimbabwean artists, artisans, creators and crafters.</p>
             <div className="hero-copy__stroke" />
-            <strong>Now open · Borrowdale Race Course, Harare</strong>
+            <strong>Now open · Mashonaland Turf Club, Borrowdale Race Course</strong>
             <button className="button button--primary" onClick={() => scrollTo("discover")}>
               Explore the makers <ArrowRight size={18} />
             </button>
@@ -347,10 +348,10 @@ export default function HomeExperience() {
             <h2>Come into<br />the Circle</h2>
             <div className="section-stroke" />
             <h3>Zimbabwean creativity. Here, now.</h3>
-            <strong>Borrowdale Race Course, Harare</strong>
+            <strong>Mashonaland Turf Club, Borrowdale Race Course</strong>
             <p>A beautiful indoor space for handmade Zimbabwean ware.</p>
             <div className="visit-actions">
-              <a className="button button--primary" href="https://www.google.com/maps/search/?api=1&query=Borrowdale+Race+Course+Harare" target="_blank" rel="noreferrer">
+              <a className="button button--primary" href={mapsUrl} target="_blank" rel="noreferrer">
                 Plan your visit <ArrowRight size={18} />
               </a>
               <button className="button button--outline" onClick={() => document.getElementById("updates-email")?.focus()}>
@@ -363,9 +364,9 @@ export default function HomeExperience() {
               <span className="road road--one" /><span className="road road--two" /><span className="road road--three" />
               <span className="road road--four" /><span className="road road--five" />
             </div>
-            <div className="visit-map__site"><MapPin /><strong>Borrowdale Race Course</strong></div>
+            <div className="visit-map__site"><MapPin /><strong>Mashonaland Turf Club</strong></div>
             <div className="visit-details">
-              <div><MapPin /><p><strong>Where</strong>Borrowdale Race Course,<br />Harare, Zimbabwe</p></div>
+              <div><MapPin /><p><strong>Where</strong>Ipi Tombe Circle, Mashonaland Turf Club,<br />Borrowdale Race Course, Harare</p></div>
               <div><Car /><p><strong>Getting there</strong>Accessible from Borrowdale Road and Dandaro Road.</p></div>
               <div><Sparkles /><p><strong>What to expect</strong>An inspiring indoor showcase of local craft, art and design.</p></div>
             </div>

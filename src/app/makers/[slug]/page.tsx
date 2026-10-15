@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { makers } from "@/data/makers";
-import { absoluteUrl, siteName, siteUrl } from "@/lib/seo";
+import { absoluteUrl, mapsUrl, postalAddress, shortAddress, siteName, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return makers.map(({ id }) => ({ slug: id }));
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const title = `${maker.brand} — ${maker.craft} in Harare`;
   return {
     title,
-    description: `${maker.description} Discover ${maker.brand} at ${siteName}, Borrowdale Race Course, Harare.`,
+    description: `${maker.description} Discover ${maker.brand} at ${siteName}, ${shortAddress}.`,
     alternates: { canonical: `/makers/${maker.id}` },
     openGraph: { title, description: maker.description, url: `/makers/${maker.id}`, images: maker.images[0] ? [maker.images[0]] : ["/opengraph-image"] },
   };
@@ -35,7 +35,7 @@ export default async function MakerPage({ params }: { params: Promise<{ slug: st
     url: absoluteUrl(`/makers/${maker.id}`),
     image: maker.images.map(absoluteUrl),
     founder: maker.makers.map((name) => ({ "@type": "Person", name })),
-    location: { "@type": "Place", name: `${siteName}, Stall ${maker.stall}`, address: { "@type": "PostalAddress", streetAddress: "Borrowdale Race Course", addressLocality: "Harare", addressCountry: "ZW" } },
+    location: { "@type": "Place", name: `${siteName}, Stall ${maker.stall}`, address: postalAddress },
   };
   return (
     <main className="maker-profile-page">
@@ -51,7 +51,7 @@ export default async function MakerPage({ params }: { params: Promise<{ slug: st
           <h2>{maker.craft}</h2>
           <p>{maker.description}</p>
           <p><strong>Made by</strong><br />{maker.makers.join(" · ")}</p>
-          <a className="button button--primary" href="https://www.google.com/maps/search/?api=1&query=Borrowdale+Race+Course+Harare">Find the Circle</a>
+          <a className="button button--primary" href={mapsUrl}>Find the Circle</a>
         </article>
       </div>
     </main>
