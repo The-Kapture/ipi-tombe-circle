@@ -22,6 +22,7 @@ export const location = {
   countryCode: "ZW",
   plusCode: "63CQ+66R Harare",
   phone: "+263 77 483 5701",
+  hours: "Mon–Sat 8am–5pm · Closed Sunday",
   latitude: -17.77938,
   longitude: 31.08805,
 } as const;
@@ -44,6 +45,13 @@ export const postalAddress = {
   addressLocality: location.suburb,
   addressRegion: location.city,
   addressCountry: location.countryCode,
+} as const;
+
+export const openingHours = {
+  "@type": "OpeningHoursSpecification",
+  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  opens: "08:00",
+  closes: "17:00",
 } as const;
 
 export const geo = {

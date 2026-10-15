@@ -368,6 +368,7 @@ export default function HomeExperience() {
             <div className="visit-map__site"><MapPin /><strong>Mashonaland Turf Club</strong></div>
             <div className="visit-details">
               <div><MapPin /><p><strong>Where</strong>Ipi Tombe Circle, Mashonaland Turf Club,<br />Borrowdale Race Course, Borrowdale, Harare</p></div>
+              <div><CalendarDays /><p><strong>Opening hours</strong>{location.hours}</p></div>
               <div><Phone /><p><strong>Call the Circle</strong><a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a></p></div>
               <div><Car /><p><strong>Getting there</strong>Enter Borrowdale Race Course from Borrowdale Road or Dandaro Road. The Circle is in the commercial section of Mashonaland Turf Club.</p></div>
               <div><Sparkles /><p><strong>What to expect</strong>An inspiring indoor showcase of local craft, art and design.</p></div>
@@ -434,6 +435,8 @@ export default function HomeExperience() {
             {location.suburb}, {location.city}, {location.country}
             <br />
             <a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a>
+            <br />
+            {location.hours}
           </address>
           <div className="site-footer__visit-actions">
             <a className="button button--light" href={directionsUrl} target="_blank" rel="noreferrer">
