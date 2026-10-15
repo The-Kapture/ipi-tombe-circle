@@ -112,7 +112,7 @@ const structuredData = {
       image: absoluteUrl("/opengraph-image"),
       description: siteDescription,
       telephone: location.phone,
-      openingHoursSpecification: [openingHours],
+      openingHoursSpecification: openingHours,
       address: postalAddress,
       geo,
       hasMap: mapsUrl,
