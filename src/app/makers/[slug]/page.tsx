@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { makers } from "@/data/makers";
-import { absoluteUrl, mapsUrl, postalAddress, shortAddress, siteName, siteUrl } from "@/lib/seo";
+import { absoluteUrl, circleId, mapsUrl, shortAddress, siteName, siteUrl, stallAddress } from "@/lib/seo";
 
 export function generateStaticParams() {
   return makers.map(({ id }) => ({ slug: id }));
@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const maker = makers.find(({ id }) => id === slug);
   if (!maker) return {};
-  const title = `${maker.brand} — ${maker.craft} in Harare`;
+  const title = `${maker.brand}: ${maker.craft} in Borrowdale, Harare`;
   return {
     title,
-    description: `${maker.description} Discover ${maker.brand} at ${siteName}, ${shortAddress}.`,
+    description: `${maker.description} Find ${maker.brand} at Stall ${maker.stall}, ${siteName}, ${shortAddress}.`,
     alternates: { canonical: `/makers/${maker.id}` },
     openGraph: { title, description: maker.description, url: `/makers/${maker.id}`, images: maker.images[0] ? [maker.images[0]] : ["/opengraph-image"] },
   };
@@ -35,11 +35,19 @@ export default async function MakerPage({ params }: { params: Promise<{ slug: st
     url: absoluteUrl(`/makers/${maker.id}`),
     image: maker.images.map(absoluteUrl),
     founder: maker.makers.map((name) => ({ "@type": "Person", name })),
-    location: { "@type": "Place", name: `${siteName}, Stall ${maker.stall}`, address: postalAddress },
+    location: { "@type": "Place", name: `Stall ${maker.stall}, ${siteName}`, address: stallAddress(maker.stall), containedInPlace: { "@id": circleId } },
+  };
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: siteName, item: siteUrl },
+      { "@type": "ListItem", position: 2, name: maker.brand, item: absoluteUrl(`/makers/${maker.id}`) },
+    ],
   };
   return (
     <main className="maker-profile-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbs]).replace(/</g, "\\u003c") }} />
       <Link className="text-link" href="/#discover">← All makers</Link>
       <div className="maker-profile-page__grid">
         <div className="maker-profile-page__gallery">
@@ -51,7 +59,8 @@ export default async function MakerPage({ params }: { params: Promise<{ slug: st
           <h2>{maker.craft}</h2>
           <p>{maker.description}</p>
           <p><strong>Made by</strong><br />{maker.makers.join(" · ")}</p>
-          <a className="button button--primary" href={mapsUrl}>Find the Circle</a>
+          <p className="maker-profile-page__where"><strong>Where to find {maker.brand}</strong><br />Stall {maker.stall}, {siteName}<br />{shortAddress}</p>
+          <a className="button button--primary" href={mapsUrl} target="_blank" rel="noreferrer">Find the Circle</a>
         </article>
       </div>
     </main>

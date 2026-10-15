@@ -26,7 +26,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { makerCategories, makers, type Maker } from "@/data/makers";
 import { db, firebaseReady } from "@/lib/firebase";
 import { CircleMark, Wordmark } from "@/components/brand";
-import { mapsUrl } from "@/lib/seo";
+import { directionsUrl, location, mapsEmbedUrl, mapsUrl, siteName } from "@/lib/seo";
 
 const heroImages = [
   ["/media/makers/kd-poratoe/kd-poratoe-3026.jpg", "Zimbabwean patterned textile bags by KD Poratoe"],
@@ -213,7 +213,7 @@ export default function HomeExperience() {
               <br />
               Held in community.
             </h1>
-            <p>A living circle of Zimbabwean artists, artisans, creators and crafters.</p>
+            <p>A living circle of Zimbabwean artists, artisans, creators and crafters, inside Mashonaland Turf Club at Borrowdale Race Course, Harare.</p>
             <div className="hero-copy__stroke" />
             <strong>Now open · Mashonaland Turf Club, Borrowdale Race Course</strong>
             <button className="button button--primary" onClick={() => scrollTo("discover")}>
@@ -235,8 +235,8 @@ export default function HomeExperience() {
             <div>
               <h2>A circle that creates more</h2>
               <div className="section-stroke" />
-              <p>Ipi Tombe Circle is a new destination and platform celebrating the creativity, skill and spirit of Zimbabwean makers.</p>
-              <p>It is a place to discover beautiful handmade work, meet the people behind it and take home pieces with meaning.</p>
+              <p>Ipi Tombe Circle is a destination in Borrowdale celebrating the creativity, skill and spirit of Zimbabwean makers. You’ll find us in the commercial section of Mashonaland Turf Club at Borrowdale Race Course, alongside its shops, cafés and markets.</p>
+              <p>Eighteen makers trade from their own stalls under one roof, so you can discover beautiful handmade work, meet the people behind it and take home pieces with meaning.</p>
               <p>When we buy local, we build futures. When we gather, we grow together.</p>
               <button className="text-link" onClick={() => scrollTo("discover")}>
                 Meet the Circle <ArrowRight size={18} />
@@ -349,7 +349,7 @@ export default function HomeExperience() {
             <div className="section-stroke" />
             <h3>Zimbabwean creativity. Here, now.</h3>
             <strong>Mashonaland Turf Club, Borrowdale Race Course</strong>
-            <p>A beautiful indoor space for handmade Zimbabwean ware.</p>
+            <p>A beautiful indoor space for handmade Zimbabwean ware, with 18 maker stalls under one roof in the commercial section of Mashonaland Turf Club.</p>
             <div className="visit-actions">
               <a className="button button--primary" href={mapsUrl} target="_blank" rel="noreferrer">
                 Plan your visit <ArrowRight size={18} />
@@ -366,8 +366,8 @@ export default function HomeExperience() {
             </div>
             <div className="visit-map__site"><MapPin /><strong>Mashonaland Turf Club</strong></div>
             <div className="visit-details">
-              <div><MapPin /><p><strong>Where</strong>Ipi Tombe Circle, Mashonaland Turf Club,<br />Borrowdale Race Course, Harare</p></div>
-              <div><Car /><p><strong>Getting there</strong>Accessible from Borrowdale Road and Dandaro Road.</p></div>
+              <div><MapPin /><p><strong>Where</strong>Ipi Tombe Circle, Mashonaland Turf Club,<br />Borrowdale Race Course, Borrowdale, Harare</p></div>
+              <div><Car /><p><strong>Getting there</strong>Enter Borrowdale Race Course from Borrowdale Road or Dandaro Road. The Circle is in the commercial section of Mashonaland Turf Club.</p></div>
               <div><Sparkles /><p><strong>What to expect</strong>An inspiring indoor showcase of local craft, art and design.</p></div>
             </div>
           </div>
@@ -420,6 +420,32 @@ export default function HomeExperience() {
         <div className="site-footer__admin">
           <a href="/sign-in">Circle admin <ChevronRight size={16} /></a><span>© 2026 Ipi Tombe Circle</span>
         </div>
+        <div className="site-footer__visit">
+          <address>
+            <strong>Find the Circle</strong>
+            {siteName}
+            <br />
+            {location.parentName}
+            <br />
+            {location.venue}, {location.street}
+            <br />
+            {location.suburb}, {location.city}, {location.country}
+          </address>
+          <div className="site-footer__visit-actions">
+            <a className="button button--light" href={directionsUrl} target="_blank" rel="noreferrer">
+              Get directions <ArrowRight size={18} />
+            </a>
+            <a href={mapsUrl} target="_blank" rel="noreferrer">Open in Google Maps <ChevronRight size={16} /></a>
+          </div>
+          <iframe
+            className="site-footer__map"
+            src={mapsEmbedUrl}
+            title={`Map showing ${siteName} at ${location.parentName}, ${location.venue}, ${location.city}`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       </footer>
 
       {selectedMaker && (
@@ -439,7 +465,7 @@ export default function HomeExperience() {
               ))}
             </div>
             <div className="maker-modal__content">
-              <span className="maker-card__stall">Stall {selectedMaker.stall}</span>
+              <span className="maker-card__stall">Stall {selectedMaker.stall} · {siteName}</span>
               <h2>{selectedMaker.brand}</h2>
               <p className="maker-modal__makers">{selectedMaker.makers.join(" · ")}</p>
               <span className="maker-card__category">{selectedMaker.category}</span>

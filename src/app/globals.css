@@ -1146,6 +1146,67 @@ img.object-contain {
   font-weight: 700;
 }
 
+.site-footer__visit {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
+  grid-template-areas:
+    "address map"
+    "actions map";
+  gap: 22px 48px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.site-footer__visit address {
+  grid-area: address;
+  color: rgba(255, 255, 255, 0.78);
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.site-footer__visit address strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--marigold);
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.site-footer__visit-actions {
+  grid-area: actions;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.site-footer__visit-actions > a:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.site-footer__map {
+  grid-area: map;
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 18px;
+  background: #22211d;
+  filter: grayscale(0.25) contrast(1.05);
+}
+
+.maker-profile-page__where {
+  padding: 16px 18px;
+  border-left: 3px solid var(--red);
+  background: var(--paper-deep);
+}
+
 .modal-shell {
   position: fixed;
   z-index: 100;
@@ -1424,6 +1485,18 @@ img.object-contain {
 
   .site-footer__admin {
     align-items: flex-start;
+  }
+
+  .site-footer__visit {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "address"
+      "map"
+      "actions";
+  }
+
+  .site-footer__map {
+    height: 260px;
   }
 
   .maker-modal {

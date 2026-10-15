@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Ipi Tombe Circle",
     short_name: "Ipi Tombe",
-    description: "Zimbabwean creativity, gathered in Harare.",
+    description: "Zimbabwean creativity, gathered at Mashonaland Turf Club, Borrowdale Race Course, Harare.",
     start_url: "/",
     display: "standalone",
     background_color: "#f7f3eb",
