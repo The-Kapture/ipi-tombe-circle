@@ -110,6 +110,7 @@ const structuredData = {
       logo: absoluteUrl("/icon.svg"),
       image: absoluteUrl("/opengraph-image"),
       description: siteDescription,
+      telephone: location.phone,
       address: postalAddress,
       geo,
       hasMap: mapsUrl,

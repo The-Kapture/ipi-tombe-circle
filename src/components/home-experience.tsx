@@ -10,6 +10,7 @@ import {
   Mail,
   MapPin,
   Menu,
+  Phone,
   Search,
   Sparkles,
   X,
@@ -367,6 +368,7 @@ export default function HomeExperience() {
             <div className="visit-map__site"><MapPin /><strong>Mashonaland Turf Club</strong></div>
             <div className="visit-details">
               <div><MapPin /><p><strong>Where</strong>Ipi Tombe Circle, Mashonaland Turf Club,<br />Borrowdale Race Course, Borrowdale, Harare</p></div>
+              <div><Phone /><p><strong>Call the Circle</strong><a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a></p></div>
               <div><Car /><p><strong>Getting there</strong>Enter Borrowdale Race Course from Borrowdale Road or Dandaro Road. The Circle is in the commercial section of Mashonaland Turf Club.</p></div>
               <div><Sparkles /><p><strong>What to expect</strong>An inspiring indoor showcase of local craft, art and design.</p></div>
             </div>
@@ -430,6 +432,8 @@ export default function HomeExperience() {
             {location.venue}, {location.street}
             <br />
             {location.suburb}, {location.city}, {location.country}
+            <br />
+            <a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a>
           </address>
           <div className="site-footer__visit-actions">
             <a className="button button--light" href={directionsUrl} target="_blank" rel="noreferrer">

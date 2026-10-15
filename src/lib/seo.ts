@@ -21,6 +21,7 @@ export const location = {
   country: "Zimbabwe",
   countryCode: "ZW",
   plusCode: "63CQ+66R Harare",
+  phone: "+263 77 483 5701",
   latitude: -17.77938,
   longitude: 31.08805,
 } as const;

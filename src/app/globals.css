@@ -944,7 +944,7 @@ img.object-contain {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 25px;
   padding-top: 28px;
   border-top: 1px solid rgba(82, 64, 43, 0.3);
@@ -1172,6 +1172,16 @@ img.object-contain {
   font-family: var(--font-display), serif;
   font-size: 26px;
   font-weight: 500;
+}
+
+.site-footer__visit address a {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.visit-details a {
+  color: var(--red);
+  font-weight: 700;
 }
 
 .site-footer__visit-actions {
