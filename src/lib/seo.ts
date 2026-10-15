@@ -1,5 +1,5 @@
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.ipitombecircle.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ipitombecircle.com"
 ).replace(/\/$/, "");
 
 export const circleId = `${siteUrl}/#circle`;
